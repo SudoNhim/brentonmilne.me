@@ -6,5 +6,11 @@ html
   body
     div(id='topbanner')
       p i'll make this site pretty one day i promise
+    div(id='menuitems')
+      each item in menu
+        div(class='menuItem')= item
     div
       block content
+
+    div(id='bottombanner')
+      p brenton milne's stuff, 2015-future
