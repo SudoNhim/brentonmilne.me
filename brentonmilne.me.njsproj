@@ -36,6 +36,10 @@
     <Compile Include="bin\www" />
     <Content Include="package.json" />
     <Content Include="public\favicon.ico" />
+    <Content Include="public\images\menu_thumbs\about_thumb.png" />
+    <Content Include="public\images\menu_thumbs\image_code_thumb.png" />
+    <Content Include="public\images\menu_thumbs\minecraft_raytracer_thumb.png" />
+    <Content Include="public\images\minecraft_raytracer\minecraft_raytracer.jpg" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\index.jade" />
@@ -46,6 +50,8 @@
     <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
+    <Folder Include="public\images\menu_thumbs\" />
+    <Folder Include="public\images\minecraft_raytracer\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />

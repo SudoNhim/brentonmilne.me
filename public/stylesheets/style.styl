@@ -1,7 +1,7 @@
 ﻿body
   font 14px Consolas
   background-color black
-  
+
 div
   color lightgreen
   border 1px solid lightgreen
@@ -9,20 +9,35 @@ div
 a
   color lightred
 
+p
+  margin-left 5px
+
 #menuitems
   overflow auto
 
 #menuitems .menuItem
+  position relative
+  overflow hidden
   float left
   width 128px
   height 128px
 
 #menuitems .menuItem:hover
-  background-color darkgrey
+  color white
+
+#menuitems .menuItemThumbnail
+  position absolute
+  left 0
+  top 0
+  width 100%
+  height 100%
+
+#menuitems .menuItemThumbnail:hover
+  opacity 0.4
 
 #topbanner p
-  margin 0
+  margin 0 5px 0 5px
 
 #bottombanner p
   text-align right
-  margin 0
+  margin 0 5px 0 5px
