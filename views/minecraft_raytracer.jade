@@ -1,19 +1,20 @@
 ﻿extends layout
 
 block content
-  figure
-    img(src='/images/minecraft/finished.png')
   p.
-    i wrote a realtime ray tracer that can render minecraft worlds with rounded
-     edges. notable features:
+    in 2014 i wrote a real-time ray tracer that can render minecraft-like 
+    worlds with rounded edges, implemented as a gpu fragment shader.
+  p.
+    notable features:
   ul
     li normal mapping
     li reflections
     li ambient occlusion
-    li fog
   p.
     i can render the same view distance as the actual minecraft renderer at
     30fps on my gtx 660 at 1080p
+  figure
+    img(src='/images/minecraft/finished.png')
   p.
     the blocks are intersected using a voxel stepping algorithm that runs 
     efficiently as a shader program on the gpu. i came up with the algorithm 
@@ -21,7 +22,7 @@ block content
     shadertoy.com use the same algorithm. within each block, the rounded edges
     are intersected by raymarching a distance field. the ambient occlusion is
     very crude; upon intersection the map is sampled for other nearby blocks,
-    and a made-up calculation is performed. screen space occlusion would be
+    and a rough calculation is performed. screen space occlusion would be
     better, but this method means the entire tracer can be implemented as a
     shader program. textures are generated procedurally, and scenery comes
     from a heightmap (although there's no reason it couldn't be an actual 

@@ -30,5 +30,8 @@ router.get('/minecraft', function (req, res) {
   res.render('minecraft_raytracer', { appdata: appdata });
 });
 
+router.get('/imagecode', function (req, res) {
+  res.render('imagecode', { appdata: appdata });
+});
 
 module.exports = { router: router, appdata: appdata };
