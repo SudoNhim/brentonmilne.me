@@ -7,21 +7,47 @@ block content
     users have to generate them procedurally by filling out a
     javascript function stub.
   p.
+    images are generated asynchronously and incrementally in
+    the background by javascript web workers, allowing
+    image-code to scale with multiple cpu cores. as the user
+    types, their code is constantly recompiled and dispatched;
+    they can see the image start rebuilding instantly when a
+    change is made.
+  p.
     prior to this project i had been learning python for just
     over a year, and i had no other significant programming 
     experience. image-code was an introduction to javascript, 
-    html, webservers, and asynchronous programming. as such,
+    html, webservers, and asynchronous programming; as such,
     i do not recommend looking at the source. for the brave,
     it is available on my
     <a href='https://github.com/SudoNhim/Image-code-Project'>
-      github</a>.
+    github</a>. i do not recommend it as an example; web
+    workers were in their infancy when the front end was
+    written, and due to my inexperience the back end is
+    hacky and horrible.
+  p.
+    due to my  unwillingness at the time to
+    use anything but python, the first version of image-code
+    actually accepted python syntax and generated images on
+    the server. the code wasn't sandboxed - for security
+    i wrote a parser to process python's abstract syntax
+    and allow a safe subset of the language to execute.
+    while misguided, this was certainly an interesting way
+    of solving the problem, you can see my stackoverflow
+    posts about it
+    <a href='http://stackoverflow.com/questions/10661079/restricting-pythons-syntax-to-execute-user-code-safely-is-this-a-safe-approach'>
+    here</a>. the python version of image-code was
+    surprisingly popular - my server was hammered for days,
+    and an anonymous other developer helped me get started
+    porting it to javascript (you can see his contributions
+    on the github repo).
   p.
     as of 2015 the site has around 300 submissions, of which
     about half are my own. you can access image-code 
     <a href='http://global.canthub.info/imagecode'>
     here</a> and have a play with it if you like. submitting
     images is relatively open to abuse; if it is being hacked 
-    in bad taste i will disable submitting, or add moderation.
+    in bad taste i will disable submitting.
   figure
     img(src='images/imagecode/gallery.png')
     figcaption screenshot of the gallery
