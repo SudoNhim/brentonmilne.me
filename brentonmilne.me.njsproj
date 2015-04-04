@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="routes\index.js" />
+    <Compile Include="routes\toplevel_pages.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
     <Content Include="package.json" />
@@ -39,19 +39,29 @@
     <Content Include="public\images\menu_thumbs\about_thumb.png" />
     <Content Include="public\images\menu_thumbs\image_code_thumb.png" />
     <Content Include="public\images\menu_thumbs\minecraft_raytracer_thumb.png" />
-    <Content Include="public\images\minecraft_raytracer\minecraft_raytracer.jpg" />
+    <Content Include="public\images\minecraft\distance_fields.png" />
+    <Content Include="public\images\minecraft\finished.png" />
+    <Content Include="public\images\minecraft\fun_with_reflections.png" />
+    <Content Include="public\images\minecraft\normal_mapping_and_ao.png" />
+    <Content Include="public\images\minecraft\reflections.png" />
+    <Content Include="public\images\minecraft\rounded_edges.png" />
+    <Content Include="public\images\minecraft\specular.png" />
+    <Content Include="public\images\minecraft\textures_and_fog.png" />
+    <Content Include="public\images\minecraft\transparent_water.png" />
+    <Content Include="public\images\minecraft\voxel_stepper.png" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
+    <Content Include="views\minecraft_raytracer.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\images\menu_thumbs\" />
-    <Folder Include="public\images\minecraft_raytracer\" />
+    <Folder Include="public\images\minecraft\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />

@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var routes = require('./routes/toplevel_pages').router;
+var appdata = require('./routes/toplevel_pages').appdata;
 var users = require('./routes/users');
 
 var app = express();
@@ -42,7 +43,8 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err
+      error: err,
+      appdata: appdata
     });
   });
 }
@@ -53,7 +55,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: {},
+    appdata: appdata
   });
 });
 

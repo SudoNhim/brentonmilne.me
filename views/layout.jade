@@ -7,9 +7,10 @@ html
     div(id='topbanner')
       p i'll make this site pretty one day maybe
     div(id='menuitems')
-      each item in [{title: 'about', thumbnail: 'images/menu_thumbs/about_thumb.png'}, {title: 'image live-coder',thumbnail: 'images/menu_thumbs/image_code_thumb.png'}, {title: 'minecraft raytracer', thumbnail: 'images/menu_thumbs/minecraft_raytracer_thumb.png'}]
+      each item in appdata.menu
         div(class='menuItem')= item.title
-          img(class='menuItemThumbnail' src=item.thumbnail)
+          a(href=item.link)
+            img(class='menuItemThumbnail' src=item.thumbnail)
     div
       block content
 
