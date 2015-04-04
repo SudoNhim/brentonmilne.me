@@ -6,6 +6,9 @@ block content
     like an image gallery, except instead of uploading images,
     users have to generate them procedurally by filling out a
     javascript function stub.
+  figure
+    img(src='images/imagecode/submission.png')
+    figcaption the submission page rendering a mandelbrot
   p.
     images are generated asynchronously and incrementally in
     the background by javascript web workers, allowing
@@ -28,7 +31,7 @@ block content
   p.
     due to my  unwillingness at the time to
     use anything but python, the first version of image-code
-    actually accepted python syntax and generated images on
+    actually accepted python syntax tree and generated images on
     the server. the code wasn't sandboxed - for security
     i wrote a parser to process python's abstract syntax
     and allow a safe subset of the language to execute.
