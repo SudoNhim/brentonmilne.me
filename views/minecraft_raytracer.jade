@@ -23,7 +23,9 @@ block content
     very crude; upon intersection the map is sampled for other nearby blocks,
     and a made-up calculation is performed. screen space occlusion would be
     better, but this method means the entire tracer can by implemented as a
-    shader program.
+    shader program. textures are generated procedurally, and scenery comes
+    from a heightmap (although there's no reason it couldn't be an actual 
+    minecraft map saved as a 3d texture).
 
   p.
     i made this renderer while studying in 2014. now, a year later, i am
@@ -34,8 +36,38 @@ block content
 
   figure
     img(src='images/minecraft/voxel_stepper.png')
-    figcaption.
-      this project began from a voxel stepper i came up with while i was 
-      messing around in a live coding ide
+    figcaption the initial voxel stepper
 
+  figure
+    img(src='images/minecraft/textures_and_fog.png')
+    figcaption after adding textures and fog
+        
+  figure
+    img(src='images/minecraft/transparent_water.png')
+    figcaption with transparent water
+
+  figure
+    img(src='images/minecraft/distance_fields.png')
+    figcaption messing with distance fields
+        
+  figure
+    img(src='images/minecraft/rounded_edges.png')
+    figcaption rounded edges implemented
+        
+  figure
+    img(src='images/minecraft/reflections.png')
+    figcaption reflection implemented
+        
+  figure
+    img(src='images/minecraft/fun_with_reflections.png')
+    figcaption messing around
+        
+  figure
+    img(src='images/minecraft/specular.png')
+    figcaption specular highlights added
+        
+  figure
+    img(src='images/minecraft/normal_mapping_and_ao.png')
+    figcaption normal mapping and ambient occlusion added
+        
   
