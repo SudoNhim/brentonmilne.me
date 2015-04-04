@@ -5,17 +5,17 @@ var appdata = {
   menu: [
     {
       title: 'about', 
-      thumbnail: 'images/menu_thumbs/about_thumb.png',
+      thumbnail: '/images/menu_thumbs/about_thumb.png',
       link: '/'
     }, 
     {
       title: 'image live-coder', 
-      thumbnail: 'images/menu_thumbs/image_code_thumb.png',
+      thumbnail: '/images/menu_thumbs/image_code_thumb.png',
       link: '/imagecode'
     }, 
     {
       title: 'minecraft raytracer', 
-      thumbnail: 'images/menu_thumbs/minecraft_raytracer_thumb.png',
+      thumbnail: '/images/menu_thumbs/minecraft_raytracer_thumb.png',
       link: '/minecraft'
     }]
 }
