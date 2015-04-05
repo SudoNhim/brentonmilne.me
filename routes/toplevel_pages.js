@@ -17,6 +17,11 @@ var appdata = {
       title: 'minecraft raytracer', 
       thumbnail: '/images/menu_thumbs/minecraft_raytracer_thumb.png',
       link: '/minecraft'
+    },
+    {
+      title: 'not butter',
+      thumbnail: '/images/menu_thumbs/not_butter_thumb.png',
+      link: '/notbutter'
     }]
 }
 
@@ -32,6 +37,10 @@ router.get('/minecraft', function (req, res) {
 
 router.get('/imagecode', function (req, res) {
   res.render('imagecode', { appdata: appdata });
+});
+
+router.get('/notbutter', function (req, res) {
+  res.render('notbutter', { appdata: appdata });
 });
 
 module.exports = { router: router, appdata: appdata };

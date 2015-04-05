@@ -57,6 +57,7 @@
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
     <Content Include="views\minecraft_raytracer.jade" />
+    <Content Include="views\notbutter.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
