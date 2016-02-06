@@ -36,6 +36,13 @@
     <Compile Include="bin\www" />
     <Content Include="package.json" />
     <Content Include="public\favicon.ico" />
+    <Content Include="public\images\cloudworld\skybox\above.jpg" />
+    <Content Include="public\images\cloudworld\skybox\back.jpg" />
+    <Content Include="public\images\cloudworld\skybox\below.jpg" />
+    <Content Include="public\images\cloudworld\skybox\COPYING" />
+    <Content Include="public\images\cloudworld\skybox\front.jpg" />
+    <Content Include="public\images\cloudworld\skybox\left.jpg" />
+    <Content Include="public\images\cloudworld\skybox\right.jpg" />
     <Content Include="public\images\imagecode\gallery.png" />
     <Content Include="public\images\menu_thumbs\about_thumb.png" />
     <Content Include="public\images\menu_thumbs\image_code_thumb.png" />
@@ -54,15 +61,17 @@
     <Content Include="README.md" />
     <Content Include="views\imagecode.jade" />
     <Content Include="views\index.jade" />
+    <Content Include="views\cloudworld.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
     <Content Include="views\minecraft_raytracer.jade" />
-    <Content Include="views\notbutter.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
+    <Folder Include="public\images\cloudworld\" />
+    <Folder Include="public\images\cloudworld\skybox\" />
     <Folder Include="public\images\imagecode\" />
     <Folder Include="public\images\menu_thumbs\" />
     <Folder Include="public\images\minecraft\" />
