@@ -1,5 +1,9 @@
-﻿doctype html
-html
-  head
-    title
-  body
+﻿extends layout
+
+block content
+	div(id='content' style='height:600px')
+	
+	script(src='/javascripts/three.min.js')
+	script(src='/javascripts/cloudworld/scene.js')
+	script.
+		makeScene(document.getElementById('content'));

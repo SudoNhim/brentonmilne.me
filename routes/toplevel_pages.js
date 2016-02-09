@@ -19,9 +19,9 @@ var appdata = {
       link: '/minecraft'
     },
     {
-      title: 'not butter',
-      thumbnail: '/images/menu_thumbs/not_butter_thumb.png',
-      link: '/notbutter'
+      title: 'cloud world',
+      thumbnail: '/images/menu_thumbs/cloudworld.png',
+      link: '/cloudworld'
     }]
 }
 
@@ -39,8 +39,8 @@ router.get('/imagecode', function (req, res) {
   res.render('imagecode', { appdata: appdata });
 });
 
-router.get('/notbutter', function (req, res) {
-  res.render('notbutter', { appdata: appdata });
+router.get('/cloudworld', function (req, res) {
+  res.render('cloudworld', { appdata: appdata });
 });
 
 module.exports = { router: router, appdata: appdata };

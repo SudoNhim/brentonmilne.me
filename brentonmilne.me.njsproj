@@ -31,20 +31,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="public\javascripts\cloudworld\scene.js" />
+    <Compile Include="public\javascripts\PointerLockControls.js" />
+    <Compile Include="public\javascripts\three.min.js" />
     <Compile Include="routes\toplevel_pages.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
     <Content Include="package.json" />
     <Content Include="public\favicon.ico" />
-    <Content Include="public\images\cloudworld\skybox\above.jpg" />
-    <Content Include="public\images\cloudworld\skybox\back.jpg" />
-    <Content Include="public\images\cloudworld\skybox\below.jpg" />
-    <Content Include="public\images\cloudworld\skybox\COPYING" />
-    <Content Include="public\images\cloudworld\skybox\front.jpg" />
-    <Content Include="public\images\cloudworld\skybox\left.jpg" />
-    <Content Include="public\images\cloudworld\skybox\right.jpg" />
+    <Content Include="public\images\cloudworld\skydome.jpg" />
     <Content Include="public\images\imagecode\gallery.png" />
+    <Content Include="public\images\imagecode\submission.png" />
     <Content Include="public\images\menu_thumbs\about_thumb.png" />
+    <Content Include="public\images\menu_thumbs\cloudworld.png" />
     <Content Include="public\images\menu_thumbs\image_code_thumb.png" />
     <Content Include="public\images\menu_thumbs\minecraft_raytracer_thumb.png" />
     <Content Include="public\images\minecraft\distance_fields.png" />
@@ -71,11 +70,11 @@
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\images\cloudworld\" />
-    <Folder Include="public\images\cloudworld\skybox\" />
     <Folder Include="public\images\imagecode\" />
     <Folder Include="public\images\menu_thumbs\" />
     <Folder Include="public\images\minecraft\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="public\javascripts\cloudworld\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
