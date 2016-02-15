@@ -32,7 +32,6 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\cloudworld\scene.js" />
-    <Compile Include="public\javascripts\PointerLockControls.js" />
     <Compile Include="public\javascripts\three.min.js" />
     <Compile Include="routes\toplevel_pages.js" />
     <Compile Include="routes\users.js" />

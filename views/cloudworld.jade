@@ -5,5 +5,146 @@ block content
 	
 	script(src='/javascripts/three.min.js')
 	script(src='/javascripts/cloudworld/scene.js')
+
+	// Vertex shader for the skybox
+	script(type='x-shader/x-vertex' id='skybox-shader-vs').
+		varying vec3 fragPosition;
+		void main() {
+			fragPosition = position;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		}
+	
+	// Fragment shader for the skybox
+	script(type='x-shader/x-fragment' id='skybox-shader-fs').
+		varying vec3 fragPosition;
+		uniform sampler2D skydome;
+		uniform sampler2D noise256;
+		uniform float time;
+		const float PI = 3.14159;
+
+		const mat2 rot33deg = mat2( 0.839, 0.545, -0.545, 0.839 );
+		
+		void main() {
+			vec3 color = vec3(1.0);
+			vec3 rayDir = normalize(fragPosition - cameraPosition);
+
+			// If hit water, reflect
+			if (fragPosition.y < 0.001) {
+				vec3 normal = vec3(0.0, 1.0, 0.0);
+				vec2 uv = fragPosition.xz;
+				uv *= rot33deg;
+				normal += texture2D(noise256, uv / 30000.0 + time / 500.0 ).xyz / 10.0;
+				uv *= rot33deg;
+				normal += texture2D(noise256, uv / 10000.0 + time / 400.0 ).xyz / 10.0;
+				uv *= rot33deg;
+				normal += texture2D(noise256, uv / 4000.0 + time / 800.0 ).xyz / 60.0;
+				normal = normalize(normal);
+				rayDir = reflect(rayDir, normal);
+				rayDir.y = abs(rayDir.y);
+				color *= vec3(0.5, 0.6, 0.9);
+			}
+			// Otherwise, adjust for infinite viewdist
+			else rayDir = normalize(fragPosition - cameraPosition * vec3(1.0,0.0,1.0));
+
+			// Intersect with skybox
+			float pitch = atan(rayDir.z, rayDir.y);
+			float yaw = atan(rayDir.x, rayDir.y);
+			vec2 uv;
+			if (abs(pitch) <= PI/4.0 && abs(yaw) <= PI/4.0) { // Top plane
+				uv = (rayDir.xz / rayDir.y) * 0.25 + 0.5;
+			} else if (-pitch >= PI / 4.0 && -pitch >= abs(yaw)) { // front
+				uv = (rayDir.xy / rayDir.z) * -0.25 + vec2(0.5, 0.0);
+			} else if (pitch >= PI / 4.0 && pitch >= abs(yaw)) { // back
+				uv = (rayDir.xy / rayDir.z) * 0.25 + vec2(0.5, 0.75);
+				uv.y = 0.75 + (1.0 - uv.y);
+			} else if (-yaw >= PI / 4.0 && -yaw >= abs(pitch)) { // left
+				uv = (rayDir.yz / rayDir.x) * -0.25 + vec2(0.0, 0.5);
+			} else {
+				uv = (rayDir.yz / rayDir.x) * -0.25 + vec2(1.0, 0.5);
+				uv.y = 1.0 - uv.y;
+			}
+			color *= texture2D(skydome, uv).rgb * vec3(0.6, 0.6, 0.8);
+
+			// Fog
+			float fogginess = smoothstep(1000.0, 0.0, fragPosition.y);
+			fogginess *= smoothstep(0.0, 2500.0, length(fragPosition.xz - cameraPosition.xz));
+			color = mix(color, vec3(0.24, 0.22, 0.25), fogginess);
+
+			gl_FragColor = vec4(color.rgb, 1.0);
+		}
+
+	// Vertex shader for the heightmap
+	script(type='x-shader/x-vertex' id='heightmap-shader-vs').
+		varying vec2 heightmapCoord;
+		void main() {
+			heightmapCoord = position.xy / 2.0 + 0.5;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		}
+
+	// Fragment shader for the heightmap
+	script(type='x-shader/x-fragment' id='heightmap-shader-fs').
+		uniform sampler2D heightMap;
+		uniform float time;
+		uniform float timeDelta;
+		varying vec2 heightmapCoord;
+		
+		void main() {
+			vec3 color = vec3(0.0);
+			color.r += 0.15*sin(heightmapCoord.x*20.0 + time/10.0);
+			color.r += 0.15*sin(heightmapCoord.y*20.0 + time/10.0);
+			color.r *= smoothstep(1.0, 0.75, heightmapCoord.x);
+			color.r *= smoothstep(1.0, 0.75, heightmapCoord.y);
+			color.r *= smoothstep(0.0, 0.25, heightmapCoord.x);
+			color.r *= smoothstep(0.0, 0.25, heightmapCoord.y);
+			gl_FragColor = vec4(color.rgb, 1.0);
+		}
+
+	// Vertex shader for the island
+	script(type='x-shader/x-vertex' id='island-shader-vs').
+		varying vec3 fragPosition;
+		uniform sampler2D noise256;
+		uniform float time;
+		uniform float cellSize;
+		uniform float islandSize;
+		uniform sampler2D heightMap;
+		uniform float islandHeight;
+		varying vec2 heightmapCoord;
+		
+		void main() {
+			fragPosition = position;
+			vec2 actualUv = uv * (islandSize - cellSize*0.5)/islandSize; // uv on center of pixel
+			fragPosition.y = texture2D(heightMap, actualUv).r * islandHeight - 100.0;
+			heightmapCoord = actualUv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(fragPosition, 1.0);
+		}
+
+	// Fragment shader for the island
+	script(type='x-shader/x-fragment' id='island-shader-fs').
+		varying vec3 fragPosition;
+		uniform sampler2D noise256;
+		uniform float time;
+		uniform sampler2D heightMap;
+		varying vec2 heightmapCoord;
+		uniform float cellSize;
+		uniform float islandSize;
+		uniform float islandHeight;
+		const float PI = 3.14159;
+
+		const mat2 rot33deg = mat2( 0.839, 0.545, -0.545, 0.839 );
+		
+		void main() {
+			vec3 color = vec3(1.0);
+			
+			float inc = cellSize / islandSize * 0.5;
+			float hN = texture2D(heightMap, heightmapCoord + vec2(0.0,  inc)).r * islandHeight;
+			float hS = texture2D(heightMap, heightmapCoord + vec2(0.0, -inc)).r * islandHeight;
+			float hE = texture2D(heightMap, heightmapCoord + vec2( inc, 0.0)).r * islandHeight;
+			float hW = texture2D(heightMap, heightmapCoord + vec2(-inc, 0.0)).r * islandHeight;
+			vec3 normal = normalize(vec3(hE-hW, hN-hS, inc));
+			
+			color = vec3(0.7, 0.2, 0.6) * (clamp(0.0, 1.0, dot(normal, vec3(0.6))) + 0.2);
+			gl_FragColor = vec4(color.rgb, 1.0);
+		}
+
 	script.
 		makeScene(document.getElementById('content'));
